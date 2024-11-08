@@ -1,0 +1,56 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    background-color: #f4f4f4; /* 배경색 */
+    margin: 0; /* 기본 여백 제거 */
+    padding: 20px; /* 페이지 안쪽 여백 */
+}
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 600px; /* 최대 너비 */
+    margin: auto; /* 중앙 정렬 */
+    background: #fff; /* 배경색 */
+    padding: 20px; /* 안쪽 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* 제목 스타일 */
+h1 {
+    text-align: center; /* 중앙 정렬 */
+    color: #333; /* 글자색 */
+}
+
+/* 네비게이션 링크 스타일 */
+.nav-links {
+    text-align: center; /* 중앙 정렬 */
+}
+
+a {
+    margin: 0 10px; /* 좌우 여백 */
+    text-decoration: none; /* 밑줄 제거 */
+    color: #007bff; /* 링크 색상 */
+    font-weight: bold; /* 글자 두껍게 */
+}
+
+/* 링크 호버 스타일 */
+a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+    color: #0056b3; /* 호버 시 색상 변경 */
+}
+
+/* 작은 화면에서의 스타일 조정 */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px; /* 작은 화면에서 안쪽 여백 조정 */
+    }
+
+    h1 {
+        font-size: 24px; /* 작은 화면에서 제목 크기 조정 */
+    }
+
+    a {
+        font-size: 16px; /* 작은 화면에서 링크 글자 크기 조정 */
+    }
+}
