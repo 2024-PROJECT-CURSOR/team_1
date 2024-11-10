@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+<h1>Todo List</h1>
+
+<div id="todo-list"></div>
+<input type="text" id="todo-title" placeholder="Add new todo">
+<button onclick="createTodo()">Add Todo</button>
+
+<script>
+    const apiUrl = "http://localhost:8080/api/todos";
+
+    // 1. Todo 리스트 가져오기
+    async function fetchTodos() {
+        const response = await fetch(apiUrl);
+        const todos = await response.json();
+        displayTodos(todos);
+    }
+
+    // 2. Todo 리스트 화면에 표시
+    function displayTodos(todos) {
+        const todoList = document.getElementById("todo-list");
+        todoList.innerHTML = "";
+        todos.forEach(todo => {
+            const todoItem = document.createElement("div");
+            todoItem.innerHTML = `
+                    <input type="checkbox" ${todo.completed ? "checked" : ""} onchange="toggleTodo('${todo.id}')">
+                    <span>${todo.title}</span>
+                    <button onclick="deleteTodo('${todo.id}')">Delete</button>
+                `;
+            todoList.appendChild(todoItem);
+        });
+    }
+
+    // 3. Todo 생성하기
+    async function createTodo() {
+        const title = document.getElementById("todo-title").value;
+        const newTodo = { title, completed: false };
+
+        await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newTodo)
+        });
+
+        document.getElementById("todo-title").value = "";
+        fetchTodos();
+    }
+
+    // 4. Todo 상태 변경하기
+    async function toggleTodo(id) {
+        const todoResponse = await fetch(`${apiUrl}/${id}`);
+        const todo = await todoResponse.json();
+        todo.completed = !todo.completed;
+
+        await fetch(`${apiUrl}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(todo)
+        });
+
+        fetchTodos();
+    }
+
+    // 5. Todo 삭제하기
+    async function deleteTodo(id) {
+        await fetch(`${apiUrl}/${id}`, {
+            method: "DELETE"
+        });
+
+        fetchTodos();
+    }
+
+    // 페이지 로드 시 Todo 리스트 불러오기
+    fetchTodos();
+</script>
+</body>
+</html>
