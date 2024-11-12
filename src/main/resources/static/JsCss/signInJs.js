@@ -12,10 +12,11 @@ function login() {
         .then(response => response.text())
         .then(result => {
             const messageElement = document.getElementById("message");
-            console.log("result = "+result);
             if (result === "로그인 성공") {
                 messageElement.style.color = "green";
                 messageElement.textContent = "로그인 성공!";
+                window.location.href = "/";
+                console.log("성공");
                 // 로그인 성공 시 페이지 이동 예시 (home.html로 이동)
                 // window.location.href = "/home";
             } else {

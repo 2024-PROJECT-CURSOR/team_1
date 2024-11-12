@@ -16,6 +16,25 @@ public class UserService {
                 .equals(password);
 
     }
+    public boolean changePassword(String username, String currentPassword, String newPassword) {
+        User existingUser = userRepository.findByUsername(username);
+
+        if (existingUser == null) {
+            throw new IllegalArgumentException("No Username");
+        }
+        else if (!existingUser.getPassword().equals(currentPassword)) {
+            throw new IllegalArgumentException("Wrong currentPassword");
+        }
+        try {
+            existingUser.setPassword(newPassword);
+            userRepository.save(existingUser);  // 변경된 사용자 정보 저장
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
     public User registerUser(User user) {
         // 중복된 사용자 이름 체크
         if (userRepository.findByUsername(user.getUsername()) != null) {

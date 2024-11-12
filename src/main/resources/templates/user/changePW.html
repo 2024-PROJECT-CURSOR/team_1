@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 변경</title>
+    <script src="/JsCss/changePW.js?=ver1" defer></script>
+    <link rel="stylesheet" href="/JsCss/changePW.css">
+</head>
+<body>
+<div class="container">
+    <h2>비밀번호 변경</h2>
+    <form id="registerForm">
+        <div class="form-group">
+            <label for="current-username">현재 아이디</label>
+            <input type="text" id="current-username" name="currentUsername" required>
+        </div>
+        <div class="form-group">
+            <label for="current-password">현재 비밀번호</label>
+            <input type="password" id="current-password" name="currentPassword" required>
+        </div>
+        <div class="form-group">
+            <label for="new-password">새 비밀번호</label>
+            <input type="password" id="new-password" name="newPassword" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">새 비밀번호 확인</label>
+            <input type="password" id="confirm-password" name="confirmPassword" required>
+        </div>
+        <button type="submit">비밀번호 변경</button>
+    </form>
+</div>
+</body>
+</html>
