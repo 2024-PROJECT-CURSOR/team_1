@@ -2,6 +2,7 @@ package hello.hello_spring.controller;
 
 import hello.hello_spring.domain.User;
 import hello.hello_spring.model.Todo;
+import hello.hello_spring.repository.TodoRepository;
 import hello.hello_spring.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.List;
 public class TodoController {
     @Autowired
     private TodoService todoService;
+    private TodoRepository todoRepository;
 
     @GetMapping
     public List<Todo> getAllTodos() {
@@ -40,4 +42,17 @@ public class TodoController {
     public void deleteTodoById(@PathVariable String id) {
         todoService.deleteTodoById(id);
     }
+
+    // 검색 API
+    @GetMapping("/search")
+    public List<Todo> searchTodos(@RequestParam String title) {
+        return todoRepository.findByTitleContainingIgnoreCase(title);
+    }
+
+    // 생성자 주입
+    public TodoController(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+
+
 }
