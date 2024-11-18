@@ -2,27 +2,34 @@ package hello.hello_spring.service;
 
 import hello.hello_spring.domain.User;
 import hello.hello_spring.repository.UserRepository;
+import hello.hello_spring.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(String username, String password) {
-        // username으로 사용자 조회 후 password 일치 여부 확인
+    @Autowired
+    private JwtUtil jwtUtil; // JwtUtil 객체 주입
 
-        return userRepository.findByUsername(username).getPassword()
-                .equals(password);
+    public String login(String username, String password) {
+        User user = userRepository.findByUsername(username);
 
+        if (user != null && user.getPassword().equals(password)) {
+            return jwtUtil.generateToken(username); // 로그인 성공 시 JWT 토큰 발급
+        }
+
+        throw new IllegalArgumentException("Invalid username or password");
     }
+
     public boolean changePassword(String username, String currentPassword, String newPassword) {
         User existingUser = userRepository.findByUsername(username);
-
+        System.out.println(existingUser + " "+ username + " " + currentPassword + " " + newPassword);
         if (existingUser == null) {
             throw new IllegalArgumentException("No Username");
-        }
-        else if (!existingUser.getPassword().equals(currentPassword)) {
+        } else if (!existingUser.getPassword().equals(currentPassword)) {
             throw new IllegalArgumentException("Wrong currentPassword");
         }
         try {
@@ -30,10 +37,10 @@ public class UserService {
             userRepository.save(existingUser);  // 변경된 사용자 정보 저장
             return true;
         } catch (Exception e) {
+
             return false;
         }
     }
-
 
     public User registerUser(User user) {
         // 중복된 사용자 이름 체크

@@ -9,23 +9,25 @@ function login() {
         },
         body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
     })
-        .then(response => response.text())
-        .then(result => {
-            const messageElement = document.getElementById("message");
-            if (result === "로그인 성공") {
-                messageElement.style.color = "green";
-                messageElement.textContent = "로그인 성공!";
-                window.location.href = "/";
-                console.log("성공");
-                // 로그인 성공 시 페이지 이동 예시 (home.html로 이동)
-                // window.location.href = "/home";
+        .then(response => {
+            if (response.ok) {
+                return response.text(); // JWT 토큰 반환
             } else {
-                messageElement.style.color = "red";
-                messageElement.textContent = "로그인 실패: 아이디 또는 비밀번호를 확인하세요.";
+                return response.text().then(errorMessage => {
+                    throw new Error(errorMessage);
+                });
             }
+        })
+        .then(token => {
+            console.log("JWT Token:", token); // 콘솔에 JWT 토큰 출력 (디버깅용)
+            localStorage.setItem("jwtToken", token); // JWT 토큰을 로컬 스토리지에 저장
+            document.getElementById("message").style.color = "green";
+            document.getElementById("message").textContent = "로그인 성공!";
+            window.location.href = "/"; // 홈 페이지로 이동
         })
         .catch(error => {
             console.error("Error:", error);
-            document.getElementById("message").textContent = "서버 오류가 발생했습니다.";
+            document.getElementById("message").style.color = "red";
+            document.getElementById("message").textContent = `로그인 실패: ${error.message}`;
         });
 }

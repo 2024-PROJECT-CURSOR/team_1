@@ -12,7 +12,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     };
 
 
-    fetch('http://localhost:8080/api/users/register', {
+    fetch('/api/users/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
