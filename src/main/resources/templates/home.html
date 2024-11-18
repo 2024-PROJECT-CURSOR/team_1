@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 및 로그인</title>
+    <script src="/homeJs.js" defer></script>
     <link rel="stylesheet" href="/homeStyle.css">
 </head>
 <body>
@@ -12,7 +13,7 @@
     <div class="nav-links">
         <p>
             <a th:href="@{/api/users/signUp}">회원가입</a>
-            <a th:href="@{/api/users/signIn}">로그인</a>
+            <a href="#" id="loginLink">로그인</a>
             <a th:href="@{/api/users/changePW}">비밀번호 변경</a>
         </p>
     </div>
