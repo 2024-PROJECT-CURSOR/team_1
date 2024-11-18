@@ -74,32 +74,51 @@ async function searchTodos() {
     displayTodos(todos);
 }
 
-
 async function fetchUserProfile() {
-    await fetch('/api/users/username', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-    })
-        .then(response =>
-            response.json())  // JSON 응답을 처리
-        .then(data => {
-            console.log(data.username);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('오류가 발생했습니다. 다시 시도해주세요.');
+    try {
+        // Assuming you store the JWT token in localStorage
+        const token = localStorage.getItem("jwtToken");
+
+        // Fetch user profile from the backend
+        const response = await fetch('/api/users/profile', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         });
+
+        // If the response is not okay (status code not 200), throw an error
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Parse the response to get the user data
+        const user = await response.json();
+
+        // Check if user is null or undefined
+        if (user) {
+            // If the user is found, display the username in the #profile_nickname div
+            document.getElementById('profile_nickname').textContent = user.username;
+        } else {
+            console.log("User not found");
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while fetching the profile.');
+    }
 }
 
+// Call the function to fetch and display the user profile
+fetchUserProfile();
 
 
 
 
-
+// 페이지 로드 시 사용자 정보 불러오기
+fetchUserProfile();
 
 // 페이지 로드 시 Todo 리스트 불러오기
 fetchTodos();
-fetchUserProfile();
+

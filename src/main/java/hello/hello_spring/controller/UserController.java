@@ -111,4 +111,39 @@ public class UserController {
         return userService.getUserByUsername(username);
     }
 
+    @GetMapping("/profile")
+    public ResponseEntity<User> getUserProfile(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        token = token.substring(7);
+
+        try {
+            // Try extracting username from the token
+            String username = jwtUtil.extractUsername(token);
+
+            if (username == null || username.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);  // Missing username in token
+            }
+
+            // Retrieve user by username
+            User user = userService.getUserByUsername(username);
+
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // User not found
+            }
+
+            return ResponseEntity.ok(user);  // Return user profile
+
+        } catch (Exception e) {
+            // Log the error for debugging
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);  // 500 Internal Server Error
+        }
+    }
+
+
 }
