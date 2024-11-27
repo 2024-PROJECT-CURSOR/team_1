@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="/templates/main/todolist.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <script src="/templates/main/todolist.js" defer></script>
 </head>
 <body>
@@ -19,6 +20,21 @@
 
     </div>
 
+    <div id="extra2">
+        <div class="wrapper">
+            <div class="nav">
+                <i class="bx bxs-chevron-left"></i>
+                <i class="bx bxs-chevron-right"></i>
+            </div>
+            <div class="header">
+                <!-- 달력 헤더 위치-->
+            </div>
+            <div id ="calendar"> </div>
+        </div>
+    </div>
+
+
+
 </aside>
 
 <!--옆에 tab_bar-->
@@ -29,13 +45,17 @@
         <button onclick="createTodo()">추가</button>
     </div>
 
-
+    <div id="body_right_list_layout">
+        <div id="body_right_list">
+            <div id="todo-list"></div>
+        </div>
+    </div>
 
     <!--<input type="text" id="search-title" placeholder="Search todos">
     <button onclick="searchTodos()">Search</button>-->
 
 
-    <div id="todo-list"></div>
+
 </aside>
 
 

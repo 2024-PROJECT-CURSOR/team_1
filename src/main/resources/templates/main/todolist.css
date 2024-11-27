@@ -9,7 +9,7 @@ body {
 
 #body_left {
     width: 70%;
-    background: darkgoldenrod;
+    background: linear-gradient(135deg, #e66465, #9198e5); /* 그라디언트 배경 */
     min-width: 500px; /* 왼쪽 최소 크기 */
 }
 
@@ -17,10 +17,87 @@ body {
     width: 30%;
     overflow-y: auto; /* 내용이 넘치면 스크롤 생성 */
     height: 100%; /* 부모(body)의 높이와 동일하게 설정 */
-    align-items: center;
+    text-align: center; /* 가로 center */
+    align-items: center; /* 세로 center */
     background: #007bff;
     min-width: 300px; /* 오른쪽 최소 크기 */
 }
+
+
+
+/* wrapper 영역 스타일 */
+.wrapper {
+    width: 80%;
+    max-width: 800px;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 헤더 영역 스타일 */
+.header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* 화살표 아이콘 영역 */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nav i {
+    font-size: 24px;
+    color: #666666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav i:hover {
+    color: #333333;
+}
+
+
+/* calendar 영역 스타일 */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7열 레이아웃 */
+    gap: 5px;
+    padding: 10px;
+}
+
+#calendar div {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    color: #333333;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#calendar div:hover {
+    background: #ccc1db;
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
 
 /* Title Styling */
 h1 {
@@ -58,6 +135,25 @@ button {
     font-size: 1em;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+}
+
+
+#body_right_list_layout {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    margin: auto;
+    background-color: deeppink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#body_right_list {
+    width: 80%;
+    height: 80%;
+    background-color: White;
+
 }
 
 button:hover {
