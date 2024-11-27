@@ -2,23 +2,44 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
-    margin: 30%;
-    padding: 20px;
-    text-align: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+}
+
+#body_left {
+    width: 70%;
+    background: darkgoldenrod;
+    min-width: 500px; /* 왼쪽 최소 크기 */
+}
+
+#body_right {
+    width: 30%;
+    overflow-y: auto; /* 내용이 넘치면 스크롤 생성 */
+    height: 100%; /* 부모(body)의 높이와 동일하게 설정 */
+    align-items: center;
+    background: #007bff;
+    min-width: 300px; /* 오른쪽 최소 크기 */
 }
 
 /* Title Styling */
 h1 {
     color: #333;
     font-size: 2em;
-    margin-bottom: 20px;
+}
+
+.span_layout {
+    padding: 10px;
+    height: 5%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 /* Input Fields */
 input[type="text"] {
-    padding: 10px;
-    margin: 10px 5px;
-    width: 300px;
+    width: 80%;
+    height: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
@@ -27,7 +48,8 @@ input[type="text"] {
 
 /* Buttons */
 button {
-    padding: 10px 15px;
+    width: 20%;
+    height: 100%;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -50,37 +72,6 @@ button:hover {
     text-align: left;
 }
 
-/* Todo Items */
-.todo-item {
-    background-color: #fff;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Delete Button for Todos */
-.todo-item button {
-    background-color: #e74c3c;
-    font-size: 0.9em;
-}
-
-.todo-item button:hover {
-    background-color: #c0392b;
-}
-
-#tab_bar {
-    width: 30%;
-    height: 100%;
-    background-color: blueviolet;
-    top: 0;
-    left: 0;
-    position: fixed; /* 고정된 위치 */
-}
 
 #profile_layout {
     width: 100%;
@@ -93,3 +84,4 @@ button:hover {
     height: 10%;
     background: #c0392b;
 }
+

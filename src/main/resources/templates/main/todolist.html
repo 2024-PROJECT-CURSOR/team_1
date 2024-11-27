@@ -9,27 +9,35 @@
 </head>
 <body>
 
-<!--옆에 tab_bar-->
-<aside id ="tab_bar">
+<aside id ="body_left">
     <div id="profile_layout">
         <div id="profile_nickname"></div>
     </div>
 
-    <div id="extra"></div>
-</aside>
+    <div id="extra">
 
-<div id="right_body">
-    <h1>Todo List</h1>
-    <input type="text" id="search-title" placeholder="Search todos">
-    <button onclick="searchTodos()">Search</button>
-    <div>
-        <input type="text" id="todo-title" placeholder="Add new todo">
-        <button onclick="createTodo()">Add Todo</button>
+
     </div>
 
-    <div id="todo-list"></div>
+</aside>
 
-</div>
+<!--옆에 tab_bar-->
+<aside id ="body_right">
+    <h1>Todo List</h1>
+    <div class="span_layout">
+        <input type="text" id="todo-title" placeholder="Add new todo">
+        <button onclick="createTodo()">추가</button>
+    </div>
+
+
+
+    <!--<input type="text" id="search-title" placeholder="Search todos">
+    <button onclick="searchTodos()">Search</button>-->
+
+
+    <div id="todo-list"></div>
+</aside>
+
 
 </body>
 </html>
