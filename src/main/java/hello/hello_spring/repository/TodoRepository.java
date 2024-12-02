@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TodoRepository extends MongoRepository<Todo, String> {
-    List<Todo> findByTitleContainingIgnoreCase(String title);
+    List<Todo> findByUserId(String userId);
 }
-

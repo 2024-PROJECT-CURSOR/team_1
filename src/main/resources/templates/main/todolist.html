@@ -21,9 +21,9 @@
     <div id="extra2">
         <div class='rap'>
             <div class="header">
-                <div class="btn prevDay"></div>
-                <h2 class='dateTitle'></h2>
-                <div class="btn nextDay"></div>
+                <div id="prevMonth"></div>
+                <h2 id='dateTitle'></h2>
+                <div id="nextMonth"></div>
             </div>
 
             <div class="grid dateHead">
@@ -36,7 +36,7 @@
                 <div>토</div>
             </div>
 
-            <div class="grid dateBoard"></div>
+            <div class="grid dateBoard" id="calendarDays"></div>
 
         </div>
     </div>
@@ -48,8 +48,8 @@
 <aside id ="body_right">
     <h1>Todo List</h1>
     <div class="span_layout">
-        <input type="text" id="todo-title" placeholder="Add new todo">
-        <button id = "createButton"onclick="createTodo()">추가</button>
+        <input type="text" id="todo-title" placeholder="Add new yearGroupDTO">
+        <button id = "createButton" onclick="createTodo()">추가</button>
     </div>
 
     <div id="body_right_list_layout">

@@ -1,6 +1,7 @@
 package hello.hello_spring.util;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,22 +48,34 @@ public class JwtUtil {
         }
     }
 
+
     // 토큰이 만료되었는지 확인
     public boolean isTokenExpired(String token) {
         return extractClaims(token).getExpiration().before(new Date());
     }
 
-    // 토큰에서 claims(정보) 추출
     private Claims extractClaims(String token) {
         try {
+            // 토큰에서 'Bearer ' 접두사를 제거
+            if (token.startsWith("Bearer ")) {
+                token = token.substring(7);
+            }
+
+            System.out.println("Parsing token: " + token);
+
+            // JWT 토큰 파싱
             return Jwts.parserBuilder()
                     .setSigningKey(getSecretKey()) // 비밀 키 사용
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
+        } catch (ExpiredJwtException e) {
+            System.out.println("JWT 토큰이 만료되었습니다.");
+            throw new RuntimeException("JWT 토큰이 만료되었습니다.", e);
         } catch (Exception e) {
             System.out.println("JWT 파싱 오류: " + e.getMessage());
             throw new RuntimeException("JWT 토큰 파싱 실패", e);
         }
     }
+
 }

@@ -1,5 +1,4 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-@import url("../root/root.css");
 
 /* General Body Styling */
 body {
@@ -13,15 +12,15 @@ body {
 #body_left {
     width: 70%;
     background: var(--primary-color);
-    min-width: 500px; /* 왼쪽 최소 크기 */
+    min-width: 500px;
 }
 
 #body_right {
     width: 30%;
-    overflow-y: auto; /* 내용이 넘치면 스크롤 생성 */
-    height: 100%; /* 부모(body)의 높이와 동일하게 설정 */
-    text-align: center; /* 가로 center */
-    align-items: center; /* 세로 center */
+    overflow-y: auto;
+    height: 100%;
+    text-align: center;
+    align-items: center;
     background: var(--primary-color);
     min-width: 400px;
 }
@@ -33,10 +32,10 @@ body {
     min-height: 6rem;
     background: white;
     display: flex;
-    justify-content: space-between; /* 로고와 닉네임 레이아웃을 양쪽 끝으로 정렬 */
+    justify-content: space-between;
     align-items: center;
-    padding: 0 2vw; /* 양쪽 여백 추가 */
-    box-sizing: border-box; /* padding을 포함하여 전체 크기 계산 */
+    padding: 0 2vw;
+    box-sizing: border-box;
 }
 
 #logo {
@@ -45,50 +44,18 @@ body {
 
 #profile_nickname {
     display: flex;
-    align-items: center; /* 닉네임 텍스트 수직 정렬 */
+    align-items: center;
 }
 
-/* 달력 */
-.dateHead div {
-    background: #e31b20;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 5px;
-}
-
-.grid div {
-    padding: .6rem;
-    font-size: .9rem;
-    cursor: pointer;
-}
-
-.dateBoard div {
-    color: #222;
-    font-weight: bold;
-    min-height: 6rem;
-    padding: .6rem .8rem;
-    border-radius: 5px;
-    border: 1px solid #eee;
-}
-
-.noColor {
-    background: #eee;
-}
-
+/* Calendar Header */
 .header {
     display: flex;
     justify-content: space-between;
     padding: 1rem 2rem;
 }
 
-/* 좌우 버튼 */
-.btn {
+#prevMonth,
+#nextMonth {
     display: block;
     width: 20px;
     height: 20px;
@@ -97,37 +64,66 @@ body {
     cursor: pointer;
 }
 
-.prevDay {
+#prevMonth {
     transform: rotate(-135deg);
 }
 
-.nextDay {
+#nextMonth {
     transform: rotate(45deg);
 }
 
-
-
-
+/* Calendar Styling */
 .rap {
     padding: 0 1.4rem;
     margin-top: 1.4rem;
 }
 
 .dateHead {
-    margin: .4rem 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    margin: 0.4rem 0;
+    text-align: center;
 }
 
+.dateHead div {
+    background: #e31b20;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+}
 
+.dateBoard {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+}
 
+.dateBoard div {
+    color: #222;
+    font-weight: bold;
+    min-height: 6rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    box-sizing: border-box;
+}
 
+.dateBoard div:hover {
+    background-color: #f0f0f0;
+}
 
+.selected {
+    outline: 2px solid #007bff;
+    background-color: #e7f3ff;
+}
 
+.noColor {
+    background: #eee;
+}
 
-
-
-
-
-/* Title Styling */
+/* Todo Section Styling */
 h1 {
     color: #333;
     font-size: 2em;
@@ -141,7 +137,6 @@ h1 {
     align-items: center;
 }
 
-/* Input Fields */
 input[type="text"] {
     width: 80%;
     height: 100%;
@@ -151,7 +146,6 @@ input[type="text"] {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Buttons */
 #createButton {
     width: 20%;
     height: 100%;
@@ -165,6 +159,9 @@ input[type="text"] {
     transition: background-color 0.3s ease;
 }
 
+#createButton:hover {
+    background-color: #45a049;
+}
 
 #body_right_list_layout {
     width: 90%;
@@ -175,13 +172,13 @@ input[type="text"] {
 }
 
 #select_layout {
-    width: 80%; /* select 영역이 부모 요소의 전체 너비를 차지 */
+    width: 80%;
     display: flex;
-    margin: 0 auto 0 auto;
-    justify-content: space-between; /* 두 선택 항목을 양쪽 끝에 배치 */
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
-#select_1, #select_2{
+#select_1, #select_2 {
     width: 100%;
     padding: 10px;
     background-color: lightgray;
@@ -191,34 +188,23 @@ input[type="text"] {
 }
 
 #select_1:hover, #select_2:hover {
-    background-color: #d3d3d3; /* hover 시 배경색 변경 */
+    background-color: #d3d3d3;
 }
 
 #body_right_list {
     margin: 0 auto;
     width: 80%;
     height: 80%;
-    display: flex; /* 내부의 아이템을 가로로 정렬할 때 사용 */
-    flex-direction: column; /* 세로 정렬로 변경 */
+    display: flex;
+    flex-direction: column;
     background-color: white;
 }
 
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Todo List */
 #todo-list {
     margin: 20px auto;
     width: 80%;
     max-width: 600px;
     text-align: left;
-}
-
-
-/* Todo 리스트 스타일 */
-#todo-list {
     list-style-type: none;
     padding: 0;
 }
@@ -255,5 +241,3 @@ button:hover {
 #todo-list button:hover {
     background-color: #ff2a2a;
 }
-
-

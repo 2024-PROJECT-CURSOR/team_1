@@ -1,6 +1,6 @@
 package hello.hello_spring.controller;
 
-import hello.hello_spring.domain.User;
+import hello.hello_spring.model.User;
 import hello.hello_spring.service.UserService;
 import hello.hello_spring.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;

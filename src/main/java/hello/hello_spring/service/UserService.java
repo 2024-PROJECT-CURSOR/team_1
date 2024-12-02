@@ -1,6 +1,6 @@
 package hello.hello_spring.service;
 
-import hello.hello_spring.domain.User;
+import hello.hello_spring.model.User;
 import hello.hello_spring.repository.UserRepository;
 import hello.hello_spring.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
